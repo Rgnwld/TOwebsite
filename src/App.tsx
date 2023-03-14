@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import MainSVG from './images/scene/TOwithWheelingChair.svg';
 
 const Colors = {
     main: '#0D6B3C',
@@ -8,13 +9,22 @@ const Colors = {
     dark: '#363636',
 };
 
+const AppContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: ${Colors.light};
+    min-height: 100vh;
+`;
+
 function App() {
     return (
-        <div>
+        <AppContainer>
             <HeaderComponent />
-            <Sections />
-            <Footer />
-        </div>
+            <Section01 />
+            <SectionsComponents />
+            <FooterComponent />
+        </AppContainer>
     );
 }
 
@@ -110,13 +120,129 @@ const NavItem = styled.a`
 `;
 //#endregion
 
-function Footer() {
-    return <footer>Footer</footer>;
+//#region Footer
+function FooterComponent() {
+    return (
+        <Footer>
+            <Copyright>©2023 / YAMAMOTO HARUMY</Copyright>
+        </Footer>
+    );
 }
 
-function Sections() {
-    return <section>section</section>;
+const Footer = styled.footer`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+`;
+
+const Copyright = styled.span`
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+    background-color: ${Colors.main};
+    padding: 1rem;
+    color: ${Colors.light};
+    font-family: 'League Spartan', sans-serif;
+`;
+
+//#endregion
+
+//#region Sections
+const SectionsComponents: React.FC<React.PropsWithChildren> = ({ children }) => {
+    return (
+        <Sections>
+            <MobileFirst>{children}</MobileFirst>
+        </Sections>
+    );
+};
+
+const Sections = styled.section`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 540px;
+    &:nth-child(even) {
+        background-color: ${Colors.mainLight};
+    }
+    &:nth-child(odd) {
+        background-color: ${Colors.light};
+    }
+`;
+
+//#region Section 01
+function Section01() {
+    return (
+        <SectionsComponents>
+            <S1Container>
+                <S1LeftSide>
+                    <S1Title>
+                        Transformando <strong>vidas</strong>, uma <strong>atividade</strong> de cada vez.
+                    </S1Title>
+                    <S1SubTitle>
+                        Trabalhamos com pessoas <u>idosas</u> que precisam de ajuda para realizar suas atividades
+                        diárias. Avaliaremos as habilidades e dificuldades de uma pessoa e, em seguida, criaremos um
+                        plano de tratamento personalizado para ajudá-los a alcançar suas metas.
+                    </S1SubTitle>
+                    <S1ButtonContainer>
+                        <PrimaryButton>Faça uma avaliação</PrimaryButton>
+                        <SecondaryButton>Contato</SecondaryButton>
+                    </S1ButtonContainer>
+                </S1LeftSide>
+                <S1RightSide>
+                    <img src={MainSVG}></img>
+                </S1RightSide>
+            </S1Container>
+        </SectionsComponents>
+    );
 }
+
+const S1Container = styled.div`
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+`;
+
+const S1LeftSide = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+`;
+const S1RightSide = styled.div`
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+`;
+
+const S1Title = styled.h1`
+    color: ${Colors.main};
+    font-family: 'League Spartan';
+    font-weight: 400;
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+`;
+
+const S1SubTitle = styled.h3`
+    font-family: 'Inter';
+    font-weight: 400;
+    text-align: justify;
+    text-indent: 3rem;
+    font-size: 1rem;
+
+    color: ${Colors.dark};
+`;
+
+const S1ButtonContainer = styled.div`
+    display: flex;
+`;
+
+//#endregion
+//#endregion
 
 //#region GlobalComponents
 const MobileFirst = styled.div`
@@ -127,7 +253,7 @@ const PrimaryButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.25rem 1rem;
+    padding: 0.5rem 1rem;
     margin: 0.5rem;
 
     background-color: ${Colors.main};
@@ -136,9 +262,9 @@ const PrimaryButton = styled.div`
     border-radius: 2rem;
 
     border: ${Colors.main} solid 1px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: 0.9rem;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
     min-width: 8rem;
 
     cursor: pointer;
