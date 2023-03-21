@@ -1,10 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import MainSVG from './images/scene/TOwithWheelingChair.svg';
+import AtvSVG from './images/scene/Frame 24.svg';
+import ModSVG from './images/scene/Frame 20.svg';
+import AdpSVG from './images/scene/Frame 22.svg';
+import TreinSVG from './images/scene/Frame 21.svg';
+import TerSVG from './images/scene/Frame 23.svg';
 
 const Colors = {
     main: '#0D6B3C',
     mainLight: '#BED6CA',
+    mainLighter: '#EDF1EF',
     light: '#f9f9f9',
     dark: '#363636',
 };
@@ -22,7 +28,9 @@ function App() {
         <AppContainer>
             <HeaderComponent />
             <Section01 />
-            <SectionsComponents />
+            <Section02 />
+            <Section03 />
+            <Section04 />
             <FooterComponent />
         </AppContainer>
     );
@@ -164,11 +172,12 @@ const Sections = styled.section`
     justify-content: center;
     align-items: center;
     min-height: 540px;
+
     &:nth-child(even) {
         background-color: ${Colors.mainLight};
     }
     &:nth-child(odd) {
-        background-color: ${Colors.light};
+        background-color: ${Colors.mainLighter};
     }
 `;
 
@@ -201,8 +210,16 @@ function Section01() {
 
 const S1Container = styled.div`
     display: grid;
+    justify-content: center;
+    align-items: center;
     grid-template-columns: 2fr 1fr;
     gap: 3rem;
+    height: 100%;
+    @media (max-width: 1000px) {
+        display: flex;
+        max-width: 50rem;
+        padding: 2rem;
+    }
 `;
 
 const S1LeftSide = styled.div`
@@ -212,6 +229,9 @@ const S1LeftSide = styled.div`
     width: 100%;
 `;
 const S1RightSide = styled.div`
+    @media (max-width: 1000px) {
+        display: none;
+    }
     display: flex;
     width: 100%;
     align-items: center;
@@ -242,10 +262,116 @@ const S1ButtonContainer = styled.div`
 `;
 
 //#endregion
+//#region Section 02
+function Section02() {
+    return (
+        <SectionsComponents>
+            <S2Container>
+                <S2Title>Principais Serviços</S2Title>
+                <GridTemplate>
+                    <ImgContainer>
+                        <SvgImg src={AtvSVG} />
+                        Atividades de reabilitação
+                    </ImgContainer>
+                    <ImgContainer>
+                        <SvgImg src={ModSVG} />
+                        Modificações do ambiente
+                    </ImgContainer>
+                    <ImgContainer>
+                        <SvgImg src={AdpSVG} />
+                        Adaptações de dispositivos
+                    </ImgContainer>
+                    <ImgContainer>
+                        <SvgImg src={TreinSVG} />
+                        Treinamento de habilidades de vida
+                    </ImgContainer>
+                    <ImgContainer>
+                        <SvgImg src={TerSVG} />
+                        Terapia cognitiva
+                    </ImgContainer>
+                </GridTemplate>
+            </S2Container>
+        </SectionsComponents>
+    );
+}
+
+const S2Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding: 3rem 0;
+`;
+
+const S2Title = styled.h1`
+    justify-self: flex-start;
+    padding: 0%;
+    margin: 0%;
+    font-size: 2.25rem;
+    font-family: 'League Spartan';
+    color: ${Colors.main};
+`;
+
+const GridTemplate = styled.div`
+    display: flex;
+    flex-flow: wrap row;
+    /* flex: 0 1; */
+    width: 80%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+    gap: 3rem;
+`;
+
+const ImgContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'League Spartan';
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: ${Colors.dark};
+`;
+
+const SvgImg = styled.img`
+    height: 10rem;
+    width: 10rem;
+`;
+
+//#endregion
+//#region Section 03
+function Section03() {
+    return (
+        <SectionsComponents>
+            <S3Container>Teste</S3Container>
+        </SectionsComponents>
+    );
+}
+
+const S3Container = styled.div``;
+//#endregion
+//#region Section 04
+function Section04() {
+    return (
+        <SectionsComponents>
+            <S4Container>Teste</S4Container>
+        </SectionsComponents>
+    );
+}
+
+const S4Container = styled.div``;
+//#endregion
+
 //#endregion
 
 //#region GlobalComponents
 const MobileFirst = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     width: 1000px;
 `;
 
@@ -265,7 +391,7 @@ const PrimaryButton = styled.div`
     font-family: 'League Spartan', sans-serif;
     font-weight: 700;
     font-size: 1rem;
-    min-width: 8rem;
+    min-width: 10rem;
 
     cursor: pointer;
 `;
