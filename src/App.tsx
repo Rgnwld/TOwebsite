@@ -66,7 +66,7 @@ const Header = styled.header`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    max-width: 100%;
 
     background-color: ${Colors.light};
     color: ${Colors.main};
@@ -76,8 +76,12 @@ const HTopContent = styled.div`
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid ${Colors.mainLight};
-
     padding: 0.5rem 0;
+
+    @media (max-width: 1000px) {
+        display: flex;
+        justify-content: center;
+    }
 `;
 
 const HBottomContent = styled.div`
@@ -107,6 +111,9 @@ const HMSubTitle = styled.h2`
 
 const HButtonArea = styled.div`
     display: flex;
+    @media (max-width: 1000px) {
+        display: none;
+    }
 `;
 
 const NavItem = styled.a`
@@ -346,13 +353,117 @@ const SvgImg = styled.img`
 function Section03() {
     return (
         <SectionsComponents>
-            <S3Container>Teste</S3Container>
+            <S3Container>
+                <S3Title>Nossos Planos</S3Title>
+                <S3Grid>
+                    <Card
+                        content={[
+                            'Qualquer horario durante a semana',
+                            'Atividades em casa',
+                            'Ensino dos cuidados necessarios aos responsaveis',
+                        ]}
+                        title="Plano Inicial"
+                    />
+                    <Card
+                        content={[
+                            'Qualquer horario durante a semana',
+                            'Atividades em casa',
+                            'Ensino dos cuidados necessarios aos responsaveis',
+                            'Incluí adaptações ao ambiente do paciente',
+                            'Inclui 1 sessão extra por mês',
+                        ]}
+                        title="Plano Intermediario"
+                    />
+                    <Card
+                        content={[
+                            'Qualquer horario durante a semana',
+                            'Atividades em casa',
+                            'Ensino dos cuidados necessarios aos responsaveis',
+                            'Incluí adaptações ao ambiente do paciente',
+                            'Inclui material Informativo adicional',
+                            'Inclui 1 sessão extra por mês',
+                        ]}
+                        title="Plano Avançado"
+                    />
+                </S3Grid>
+            </S3Container>
         </SectionsComponents>
     );
 }
 
-const S3Container = styled.div``;
+const Card: React.FC<React.PropsWithChildren<{ content: string[]; title: string }>> = (props) => {
+    return (
+        <CardHolder>
+            <CardTitle>{props.title}</CardTitle>
+            <CardContent>
+                {props.content.map((e) => (
+                    <li>{e}</li>
+                ))}
+            </CardContent>
+        </CardHolder>
+    );
+};
+
+const S3Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'League Spartan';
+
+    padding: 1rem 0;
+    padding-bottom: 2rem;
+    gap: 1rem;
+`;
+
+const S3Grid = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'League Spartan';
+    gap: 3rem;
+`;
+
+const S3Title = styled.h1`
+    display: flex;
+    justify-content: center;
+    font-family: 'League Spartan';
+    font-size: 2.25rem;
+    color: ${Colors.main};
+`;
+
+const CardHolder = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: ${Colors.main};
+    border-radius: 8px;
+    padding: 0;
+`;
+
+const CardContent = styled.ul`
+    display: flex;
+    flex-direction: column;
+    background-color: ${Colors.light};
+    padding: 1.5rem 3rem;
+    margin: 0;
+    border-radius: 8px;
+    height: 350px;
+    gap: 2rem;
+    list-style-type: upper-roman;
+`;
+
+const CardTitle = styled.h1`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    margin: 0;
+    padding: 1rem;
+    color: ${Colors.light};
+    font-weight: 600;
+`;
 //#endregion
+
 //#region Section 04
 function Section04() {
     return (
@@ -363,6 +474,14 @@ function Section04() {
 }
 
 const S4Container = styled.div``;
+
+const S4ContainerLeft = styled.div`
+    display: flex;
+`;
+
+const S4ContainerRight = styled.div`
+    display: flex;
+`;
 //#endregion
 
 //#endregion
@@ -373,6 +492,11 @@ const MobileFirst = styled.div`
     flex-direction: column;
     height: 100%;
     width: 1000px;
+    @media (max-width: 1000px) {
+        display: flex;
+        max-width: 50rem;
+        width: auto;
+    }
 `;
 
 const PrimaryButton = styled.div`
