@@ -7,6 +7,12 @@ import AdpSVG from './images/scene/Frame 22.svg';
 import TreinSVG from './images/scene/Frame 21.svg';
 import TerSVG from './images/scene/Frame 23.svg';
 
+import EmailSVG from './images/scene/Email.svg';
+import PhoneSVG from './images/scene/Phone.svg';
+
+import { GoogleMap, InfoWindow, LoadScript, Marker } from '@react-google-maps/api';
+import MapComponent from './MapComponent';
+
 const Colors = {
     main: '#0D6B3C',
     mainLight: '#BED6CA',
@@ -52,9 +58,9 @@ function HeaderComponent() {
                     </HButtonArea>
                 </HTopContent>
                 <HBottomContent>
-                    <NavItem href="#">Inicio</NavItem>
-                    <NavItem href="#">Serviço</NavItem>
-                    <NavItem href="#">Planos</NavItem>
+                    <NavItem href="#Inicio">Inicio</NavItem>
+                    <NavItem href="#Serviços">Serviço</NavItem>
+                    <NavItem href="#Planos">Planos</NavItem>
                 </HBottomContent>
             </MobileFirst>
         </Header>
@@ -273,7 +279,7 @@ const S1ButtonContainer = styled.div`
 function Section02() {
     return (
         <SectionsComponents>
-            <S2Container>
+            <S2Container id="Serviços">
                 <S2Title>Principais Serviços</S2Title>
                 <GridTemplate>
                     <ImgContainer>
@@ -468,20 +474,125 @@ const CardTitle = styled.h1`
 function Section04() {
     return (
         <SectionsComponents>
-            <S4Container>Teste</S4Container>
+            <S4Container>
+                <S4ContainerLeft>
+                    <S4LeftTitle>Entre em contato!</S4LeftTitle>
+                    <S4InputContainer placeholder="Email" />
+                    <S4InputContainer placeholder="Nome" />
+                    <S4TextAreaContainer placeholder="Descrição" />
+                </S4ContainerLeft>
+                <S4ContainerRight>
+                    <S4ContainerRHeader>
+                        <S4ContainerRHContent>
+                            <S4ContainerRHIcon src={EmailSVG} />
+                            YamamotoHarumy@gmail.com
+                        </S4ContainerRHContent>
+                        <S4ContainerRHContent>
+                            <S4ContainerRHIcon src={PhoneSVG} />
+                            (91) 9 8484-4053
+                        </S4ContainerRHContent>
+                    </S4ContainerRHeader>
+                    <MapComponent />
+                </S4ContainerRight>
+            </S4Container>
         </SectionsComponents>
     );
 }
 
-const S4Container = styled.div``;
+const S4Container = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    height: 100%;
+`;
 
 const S4ContainerLeft = styled.div`
     display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1rem;
+`;
+
+const S4LeftTitle = styled.h1`
+    display: flex;
+    justify-content: center;
+    font-family: 'League Spartan';
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+    color: ${Colors.main};
+`;
+
+const S4InputContainer = styled.input`
+    padding: 1rem;
+    font-family: 'League Spartan';
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #ffffff;
+    color: ${Colors.dark};
+    border: none;
+    border-radius: 4px;
+    outline: none;
+
+    &::placeholder {
+        /* padding: 1rem; */
+        color: ${Colors.dark}50;
+        font-weight: 600;
+    }
+`;
+
+const S4TextAreaContainer = styled.textarea`
+    padding: 1rem;
+    font-family: 'League Spartan';
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #ffffff;
+    color: ${Colors.dark};
+    border: none;
+    resize: none;
+    min-height: 200px;
+    height: 100%;
+    border-radius: 4px;
+    outline: none;
+
+    &::placeholder {
+        /* padding: 1rem; */
+        color: ${Colors.dark}50;
+        font-weight: 600;
+    }
 `;
 
 const S4ContainerRight = styled.div`
     display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    gap: 0.5rem;
 `;
+
+const S4ContainerRHeader = styled.div`
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+    font-family: 'League Spartan';
+    /* font-weight: 500; */
+    font-size: 1.1rem;
+    /* justify-content: space-between; */
+`;
+
+const S4ContainerRHContent = styled.div`
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+`;
+
+const S4ContainerRHIcon = styled(SvgImg)`
+    display: flex;
+    height: 2rem;
+    width: auto;
+`;
+
 //#endregion
 
 //#endregion
