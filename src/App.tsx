@@ -33,7 +33,7 @@ function App() {
     return (
         <AppContainer>
             <HeaderComponent />
-            {/* <Section01 /> */}
+            <Section01 />
             <Section02 />
             <Section03 />
             <Section04 />
@@ -41,6 +41,46 @@ function App() {
         </AppContainer>
     );
 }
+
+//#region GlobalComponents
+const MobileFirst = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 1024px;
+    @media (max-width: 1024px) {
+        display: flex;
+        max-width: 50rem;
+        width: auto;
+    }
+`;
+
+const PrimaryButton = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+
+    background-color: ${Colors.main};
+    color: ${Colors.light};
+
+    border-radius: 2rem;
+
+    border: ${Colors.main} solid 1px;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    min-width: 10rem;
+
+    cursor: pointer;
+`;
+
+const SecondaryButton = styled(PrimaryButton)`
+    color: ${Colors.main};
+    background-color: transparent;
+`;
+//#endregion
 
 //#region Header
 function HeaderComponent() {
@@ -87,7 +127,7 @@ const HTopContent = styled.div`
     border-bottom: 1px solid ${Colors.mainLight};
     padding: 0.5rem 0;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1024px) {
         display: flex;
         justify-content: center;
     }
@@ -231,10 +271,15 @@ const S1Container = styled.div`
     grid-template-columns: 2fr 1fr;
     gap: 3rem;
     height: 100%;
-    @media (max-width: 1000px) {
+    @media (max-width: 1024px) {
         display: flex;
         max-width: 40rem;
         /* padding: 2rem; */
+    }
+
+    @media (max-width: 500px) {
+        display: flex;
+        max-width: 20rem;
     }
 `;
 
@@ -245,7 +290,7 @@ const S1LeftSide = styled.div`
     width: 100%;
 `;
 const S1RightSide = styled.div`
-    @media (max-width: 1000px) {
+    @media (max-width: 1024px) {
         display: none;
     }
 
@@ -277,6 +322,16 @@ const S1SubTitle = styled.h3`
 
 const S1ButtonContainer = styled.div`
     display: flex;
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+
+        width: 50%;
+
+        & > * {
+            margin: 4px;
+        }
+    }
 `;
 
 //#endregion
@@ -501,7 +556,10 @@ function Section04() {
                     <S4LeftTitle>Entre em contato!</S4LeftTitle>
                     <S4InputContainer placeholder="Email" />
                     <S4InputContainer placeholder="Nome" />
-                    <S4TextAreaContainer placeholder="Descrição" />
+                    <S4ButtonDiv>
+                        <S4TextAreaContainer placeholder="Descrição" />
+                        <S4SendButton>Enviar</S4SendButton>
+                    </S4ButtonDiv>
                 </S4ContainerLeft>
                 <S4ContainerRight>
                     <S4ContainerRHeader>
@@ -530,6 +588,11 @@ const S4Container = styled.div`
     }
     gap: 2rem;
     height: 100%;
+
+    @media (max-width: 1024px) {
+        /* padding-bottom: 1rem; */
+        padding: 1rem;
+    }
 `;
 
 const S4ContainerLeft = styled.div`
@@ -560,12 +623,24 @@ const S4InputContainer = styled.input`
     border: none;
     border-radius: 4px;
     outline: none;
+    /* width: 100%; */
 
     &::placeholder {
         /* padding: 1rem; */
         color: ${Colors.dark}50;
         font-weight: 600;
     }
+
+    @media (max-width: 500px) {
+        margin: 0 1rem;
+    }
+`;
+
+const S4ButtonDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 4px;
 
     @media (max-width: 1000px) {
         margin: 0 1rem;
@@ -591,10 +666,12 @@ const S4TextAreaContainer = styled.textarea`
         color: ${Colors.dark}50;
         font-weight: 600;
     }
+`;
 
-    @media (max-width: 1000px) {
-        margin: 0 1rem;
-    }
+const S4SendButton = styled(PrimaryButton)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const S4ContainerRight = styled.div`
@@ -633,46 +710,6 @@ const S4ContainerRHIcon = styled(SvgImg)`
 
 //#endregion
 
-//#endregion
-
-//#region GlobalComponents
-const MobileFirst = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 1000px;
-    @media (max-width: 1000px) {
-        display: flex;
-        max-width: 50rem;
-        width: auto;
-    }
-`;
-
-const PrimaryButton = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem;
-
-    background-color: ${Colors.main};
-    color: ${Colors.light};
-
-    border-radius: 2rem;
-
-    border: ${Colors.main} solid 1px;
-    font-family: 'League Spartan', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    min-width: 10rem;
-
-    cursor: pointer;
-`;
-
-const SecondaryButton = styled(PrimaryButton)`
-    color: ${Colors.main};
-    background-color: transparent;
-`;
 //#endregion
 
 export default App;
