@@ -33,7 +33,7 @@ function App() {
     return (
         <AppContainer>
             <HeaderComponent />
-            <Section01 />
+            {/* <Section01 /> */}
             <Section02 />
             <Section03 />
             <Section04 />
@@ -44,6 +44,10 @@ function App() {
 
 //#region Header
 function HeaderComponent() {
+    function OnClickContact() {
+        document.getElementById('Contact')?.scrollIntoView();
+    }
+
     return (
         <Header>
             <MobileFirst>
@@ -54,12 +58,11 @@ function HeaderComponent() {
                     </HMainArea>
                     <HButtonArea>
                         <SecondaryButton>Mais Informações</SecondaryButton>
-                        <PrimaryButton>Contato</PrimaryButton>
+                        <PrimaryButton onClick={OnClickContact}>Contato</PrimaryButton>
                     </HButtonArea>
                 </HTopContent>
                 <HBottomContent>
-                    <NavItem href="#Inicio">Inicio</NavItem>
-                    <NavItem href="#Serviços">Serviço</NavItem>
+                    <NavItem href="#Serviços">Serviços</NavItem>
                     <NavItem href="#Planos">Planos</NavItem>
                 </HBottomContent>
             </MobileFirst>
@@ -230,8 +233,8 @@ const S1Container = styled.div`
     height: 100%;
     @media (max-width: 1000px) {
         display: flex;
-        max-width: 50rem;
-        padding: 2rem;
+        max-width: 40rem;
+        /* padding: 2rem; */
     }
 `;
 
@@ -245,6 +248,7 @@ const S1RightSide = styled.div`
     @media (max-width: 1000px) {
         display: none;
     }
+
     display: flex;
     width: 100%;
     align-items: center;
@@ -261,6 +265,7 @@ const S1Title = styled.h1`
 `;
 
 const S1SubTitle = styled.h3`
+    /* display: flex; */
     font-family: 'Inter';
     font-weight: 400;
     text-align: justify;
@@ -329,13 +334,28 @@ const S2Title = styled.h1`
 const GridTemplate = styled.div`
     display: flex;
     flex-flow: wrap row;
-    /* flex: 0 1; */
+
     width: 80%;
     height: 100%;
     justify-content: center;
     align-items: center;
 
     gap: 3rem;
+
+    @media only screen and (max-width: 425px) {
+        & {
+            width: 100%;
+            gap: 1rem;
+
+            div {
+                font-size: 0.9rem;
+                img {
+                    height: 7rem;
+                    width: 7rem;
+                }
+            }
+        }
+    }
 `;
 
 const ImgContainer = styled.div`
@@ -359,7 +379,7 @@ const SvgImg = styled.img`
 function Section03() {
     return (
         <SectionsComponents>
-            <S3Container>
+            <S3Container id="Planos">
                 <S3Title>Nossos Planos</S3Title>
                 <S3Grid>
                     <Card
@@ -424,10 +444,12 @@ const S3Container = styled.div`
 
 const S3Grid = styled.div`
     display: flex;
+    flex-flow: wrap row;
     justify-content: center;
     align-items: center;
     font-family: 'League Spartan';
     gap: 3rem;
+    padding: 2rem 0;
 `;
 
 const S3Title = styled.h1`
@@ -454,6 +476,7 @@ const CardContent = styled.ul`
     margin: 0;
     border-radius: 8px;
     height: 350px;
+    width: 175px;
     gap: 2rem;
     list-style-type: upper-roman;
 `;
@@ -469,12 +492,11 @@ const CardTitle = styled.h1`
     font-weight: 600;
 `;
 //#endregion
-
 //#region Section 04
 function Section04() {
     return (
         <SectionsComponents>
-            <S4Container>
+            <S4Container id="Contact">
                 <S4ContainerLeft>
                     <S4LeftTitle>Entre em contato!</S4LeftTitle>
                     <S4InputContainer placeholder="Email" />
@@ -502,6 +524,10 @@ function Section04() {
 const S4Container = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
+    @media (max-width: 1000px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
     gap: 2rem;
     height: 100%;
 `;
@@ -511,6 +537,7 @@ const S4ContainerLeft = styled.div`
     flex-direction: column;
     height: 100%;
     gap: 1rem;
+    margin-top: 1rem;
 `;
 
 const S4LeftTitle = styled.h1`
@@ -539,6 +566,10 @@ const S4InputContainer = styled.input`
         color: ${Colors.dark}50;
         font-weight: 600;
     }
+
+    @media (max-width: 1000px) {
+        margin: 0 1rem;
+    }
 `;
 
 const S4TextAreaContainer = styled.textarea`
@@ -560,6 +591,10 @@ const S4TextAreaContainer = styled.textarea`
         color: ${Colors.dark}50;
         font-weight: 600;
     }
+
+    @media (max-width: 1000px) {
+        margin: 0 1rem;
+    }
 `;
 
 const S4ContainerRight = styled.div`
@@ -572,19 +607,22 @@ const S4ContainerRight = styled.div`
 
 const S4ContainerRHeader = styled.div`
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     gap: 2rem;
     font-family: 'League Spartan';
-    /* font-weight: 500; */
     font-size: 1.1rem;
-    /* justify-content: space-between; */
+
+    @media (max-width: 1000px) {
+        justify-content: center;
+    }
 `;
 
 const S4ContainerRHContent = styled.div`
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
 `;
 
 const S4ContainerRHIcon = styled(SvgImg)`
